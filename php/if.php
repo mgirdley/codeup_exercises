@@ -1,7 +1,7 @@
 <?php
 
-$a = 5;
-$b = 10;
+$a = 10;
+$b = '10';
 $c = '10';
 
 // Shorten the next 2 statements into an if/else
