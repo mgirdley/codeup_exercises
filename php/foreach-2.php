@@ -24,12 +24,17 @@ $books = array(
 );
 
 foreach ($books as $bookKey => $book) {
-    echo "The title is " . $bookKey . "\n";
-    foreach ($book as $key => $value) {
-        echo $key . " is " . $value . "\n";
+
+    if (((int)$book['published'])>1950) {
+
+       echo "The title is " . $bookKey . "\n";
+       foreach ($book as $key => $value) {
+            echo $key . " is " . $value . "\n";
+        }
     }
     echo "\n";
-}
+}   
+
 
 
 ?>
