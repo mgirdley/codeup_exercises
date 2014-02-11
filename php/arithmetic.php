@@ -1,34 +1,50 @@
 <?php
 
 function add($a, $b) {
-    echo $a + $b . PHP_EOL;
+	if (is_numeric($a) && is_numeric($b)) {
+            echo $a + $b . PHP_EOL;
+    } else {
+        echo "ERROR: Both arguments must be numbers\n";
+    }
 }
 
 function subtract($a, $b) {
-    // Add code here
-    echo $a - $b . PHP_EOL;
+	if (is_numeric($a) && is_numeric($b)) {
+            echo $a - $b . PHP_EOL;
+    } else {
+        echo "ERROR: Both arguments must be numbers\n";
+    }
 }
 
 function multiply($a, $b) {
-    // Add code here
-    echo $a * $b . PHP_EOL;
+	if (is_numeric($a) && is_numeric($b)) {
+            echo $a * $b . PHP_EOL;
+    } else {
+        echo "ERROR: Both arguments must be numbers\n";
+    }
 }
 
 function divide($a, $b) {
-    // Add code here
-	echo $a / $b . PHP_EOL;
+	if (is_numeric($a) && is_numeric($b)) {
+            echo $a / $b . PHP_EOL;
+    } else {
+        echo "ERROR: Both arguments must be numbers\n";
+    }
 }
 
 function modulus($a, $b) {
-    // Add code here
-	echo $a % $b . PHP_EOL;
+	if (is_numeric($a) && is_numeric($b)) {
+            echo $a % $b . PHP_EOL;
+    } else {
+        echo "ERROR: Both arguments must be numbers\n";
+    }
 }
 
 
 divide(5,2);
 multiply(3,12039123);
-subtract(123,32);
+subtract(123,"foo");
 add(12,12);
-modulus(5,2)
+modulus(5,2);
 
 ?>
