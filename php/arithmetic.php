@@ -25,9 +25,11 @@ function multiply($a, $b) {
 }
 
 function divide($a, $b) {
-	if (is_numeric($a) && is_numeric($b)) {
+	if ($b==0) {
+		echo "ERROR: Cannot divide by zero.\n";
+	}	elseif (is_numeric($a) && is_numeric($b)) {
             echo $a / $b . PHP_EOL;
-    } else {
+    	} else {
         echo "ERROR: Both arguments must be numbers\n";
     }
 }
@@ -42,6 +44,7 @@ function modulus($a, $b) {
 
 
 divide(5,2);
+divide(5,0);
 multiply(3,12039123);
 subtract(123,"foo");
 add(12,12);
