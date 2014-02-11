@@ -19,10 +19,16 @@ function divide($a, $b) {
 	echo $a / $b . PHP_EOL;
 }
 
+function modulus($a, $b) {
+    // Add code here
+	echo $a % $b . PHP_EOL;
+}
+
+
 divide(5,2);
 multiply(3,12039123);
 subtract(123,32);
 add(12,12);
-
+modulus(5,2)
 
 ?>
