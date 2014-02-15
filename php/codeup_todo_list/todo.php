@@ -59,6 +59,26 @@ function get_input($upper = FALSE)
     return strtoupper(trim(fgets(STDIN)));
 }
 
+
+function new_item($items) {
+    
+    echo 'Enter item: ';
+    
+    $newitem = get_input(TRUE);        
+
+    echo 'Add to the (B)eginning or the (E)nd of the list: ';
+
+    $input = get_input(TRUE);
+
+    if ($input=='B') {
+        array_unshift($items, $newitem);
+    } else array_push($items, $newitem);
+
+    return $items;
+
+}
+
+
 // The loop!
 do {
     // Echo the list produced by the function
@@ -73,10 +93,7 @@ do {
 
     // Check for actionable input
     if ($input == 'N') {
-        // Ask for entry
-        echo 'Enter item: ';
-        // Add entry to list array
-        $items[] = get_input();
+        $items = new_item($items);
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
