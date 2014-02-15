@@ -20,6 +20,36 @@ function list_items($list)
 
 }
 
+ // Ask for a sort type and return the TODO list sorted accordingly.
+function sort_menu($toSort) {
+
+    echo "(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : ";
+
+    $input = get_input(TRUE);
+
+    switch ($input) {
+        case 'A':
+            asort($toSort);
+            return $toSort;
+            break;
+        case 'Z':
+            arsort($toSort);
+            return $toSort;
+            break;
+        case 'O':
+            ksort($toSort);
+            return $toSort;
+            break;
+        case 'R':
+            krsort($toSort);
+            return $toSort;
+            break;
+        
+    }
+
+}
+
+
 // Get STDIN, strip whitespace and newlines, 
 // and convert to uppercase if $upper is true
 function get_input($upper = FALSE) 
@@ -35,7 +65,7 @@ do {
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort, or (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -54,7 +84,10 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key]);
+    } elseif ($input == 'S') {
+        $items=sort_menu($items);
     }
+
 // Exit when input is (Q)uit
 } while ($input != 'Q');
 
