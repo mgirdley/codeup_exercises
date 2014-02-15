@@ -103,7 +103,14 @@ do {
         unset($items[$key]);
     } elseif ($input == 'S') {
         $items=sort_menu($items);
+    } elseif ($input == 'F') {
+        $temp = array_shift($items);
+        echo "First item removed! \n";
+    } elseif ($input == 'L') {
+        $temp = array_pop($items);
+        echo "Last item removed! \n";
     }
+
 
 // Exit when input is (Q)uit
 } while ($input != 'Q');
