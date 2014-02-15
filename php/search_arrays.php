@@ -16,6 +16,21 @@ function search_array($array, $value) {
 	} else return TRUE;
 }
 
+
+function compare_array($array_one, $array_two) {
+
+	$count=0;
+
+	foreach ($array_one as $value) {
+		$index = array_search($value, $array_two);
+		if (!($index===FALSE)) {
+			$count++;
+		}
+	}
+
+	return $count;
+}
+
 $result=search_array($names,'Tina');
 if ($result) {
 	echo "Found Tina!\n";
@@ -26,6 +41,7 @@ if ($result) {
 	echo "Found Bob!\n";
 } else { echo "Didn't find Bob!\n";}
 
+echo "I compared the arrays: " . compare_array($names, $compare) . "\n";
 
 
 ?>
