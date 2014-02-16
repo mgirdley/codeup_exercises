@@ -56,7 +56,7 @@ function get_input($upper = FALSE)
 {
     // Return filtered STDIN input
     // $upper=fgets($upper);
-    return strtoupper(trim(fgets(STDIN)));
+    return trim(fgets(STDIN));
 }
 
 
@@ -81,7 +81,7 @@ function new_item($items) {
 
 function read_file($filename) {
 
-    var_dump($filename);
+    // var_dump($filename);
     
     if ($filename=="") { $filename = '../data/todo_list.txt'; }
     $handle = fopen($filename, "r");
@@ -93,17 +93,57 @@ function read_file($filename) {
 }
 
 
+function write_file($filename, $contents_array) {
+
+    // var_dump($filename);
+    
+    if ($filename=="") { $filename = '../data/todo_list.txt'; }
+
+    if (file_exists($filename)) {
+ 
+        echo "The file exists.  (Y)es or (N)o to overwrite it? ";
+
+        $input = strtoupper(get_input(TRUE));
+
+        if ($input=='Y') {
+
+            $handle = fopen($filename, 'w');
+            $contents_string = implode("\n", $contents_array); 
+            fwrite($handle, $contents_string);
+            fclose($handle);
+
+            echo "File successfully saved to " . $filename . "\n";
+
+        } else {
+            echo "OK.  Not doing anything, then.\n";
+        }
+
+    } else {
+            $handle = fopen($filename, 'w');
+            $contents_string = implode("\n", $contents_array); 
+            fwrite($handle, $contents_string);
+            fclose($handle);
+
+            echo "File successfully saved to " . $filename . "\n";
+
+    }
+
+}
+
+
 // The loop!
 do {
     // Echo the list produced by the function
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (O)pen file, (R)emove item, (S)ort, or (Q)uit : ';
+    echo '(N)ew item, (O)pen file, (R)emove item, (S)ort, s(A)ve or (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
     $input = get_input(TRUE);
+
+    $input = strtoupper($input);
 
     // Check for actionable input
     if ($input == 'N') {
@@ -122,6 +162,13 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key]);
+    } elseif ($input == 'A') {
+        // Read which file?
+        echo 'Enter the filename (or just press enter for file to be ../data/todo_list.txt): ';
+        // Get filename
+        $filename = get_input();
+        // Populatre the array
+        write_file($filename, $items);
     } elseif ($input == 'S') {
         $items=sort_menu($items);
     } elseif ($input == 'F') {
