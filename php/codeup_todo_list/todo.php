@@ -79,13 +79,27 @@ function new_item($items) {
 }
 
 
+function read_file($filename) {
+
+    var_dump($filename);
+    
+    if ($filename=="") { $filename = '../data/todo_list.txt'; }
+    $handle = fopen($filename, "r");
+    $contents = fread($handle, filesize($filename));
+    $contents_array = explode("\n", $contents);
+    fclose($handle);
+    
+    return $contents_array;
+}
+
+
 // The loop!
 do {
     // Echo the list produced by the function
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort, or (Q)uit : ';
+    echo '(N)ew item, (O)pen file, (R)emove item, (S)ort, or (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -94,6 +108,13 @@ do {
     // Check for actionable input
     if ($input == 'N') {
         $items = new_item($items);
+    } elseif ($input == 'O') {
+        // Read which file?
+        echo 'Enter the filename (or just press enter for file to be ../data/todo_list.txt): ';
+        // Get filename
+        $filename = get_input();
+        // Populatre the array
+        $items = read_file($filename);
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
